@@ -1,4 +1,4 @@
-/** L'emblème de la lune noire, teinté par le jeton --couleur-embleme. */
+/** L'emblème de la Maison Kurotsuki, aux couleurs originelles. */
 export function Embleme({ className = "", decoratif = true }: { className?: string; decoratif?: boolean }) {
   return (
     <span

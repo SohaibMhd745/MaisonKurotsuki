@@ -1,6 +1,6 @@
 "use client";
 
-import { IdleAnimation, SkinViewer } from "skinview3d";
+import { PlayerAnimation, type PlayerObject, SkinViewer } from "skinview3d";
 import { inferModelType, loadSkinToCanvas } from "skinview-utils";
 import type { Gabarit } from "./types";
 
@@ -63,10 +63,91 @@ export function creerVue({ canvas, largeur, hauteur, animation = true, capture =
   return vue;
 }
 
-export function respiration(): IdleAnimation {
-  const anim = new IdleAnimation();
+/** Cadrage en trois-quarts élégant pour la scène principale. */
+export function regarderTroisQuarts(vue: SkinViewer) {
+  const d = 54;
+  const azimut = (-24 * Math.PI) / 180;
+  const elevation = (7 * Math.PI) / 180;
+  const cibleY = -0.5;
+  vue.camera.position.set(
+    d * Math.cos(elevation) * Math.sin(azimut),
+    cibleY + d * Math.sin(elevation),
+    d * Math.cos(elevation) * Math.cos(azimut),
+  );
+  vue.controls.target.set(0, cibleY, 0);
+  vue.controls.update();
+}
+
+/**
+ * Animation fluide et vivante d'un mannequin de haute couture :
+ * - Bras délicatement écartés du corps (jamais collés ou raides)
+ * - Respiration douce des bras et du port de tête
+ * - Léger flottement naturel de la cape
+ */
+export class RespirationCouture extends PlayerAnimation {
+  animate(player: PlayerObject) {
+    const t = this.progress * 1.5;
+    const ecartBras = 0.13;
+
+    // Bras décollés du torse avec ondulation subtile de respiration
+    player.skin.leftArm.rotation.z = Math.cos(t) * 0.02 + ecartBras;
+    player.skin.rightArm.rotation.z = Math.cos(t + Math.PI) * 0.02 - ecartBras;
+    player.skin.leftArm.rotation.x = Math.sin(t) * 0.025 + 0.07;
+    player.skin.rightArm.rotation.x = Math.sin(t + Math.PI) * 0.025 - 0.05;
+
+    // Port de tête altier, respiration douce
+    player.skin.head.rotation.y = Math.sin(t * 0.5) * 0.03 - 0.08;
+    player.skin.head.rotation.x = Math.cos(t * 0.6) * 0.015 + 0.02;
+
+    // Stance défilé stable
+    player.skin.rightLeg.rotation.x = 0.05;
+    player.skin.rightLeg.rotation.z = -0.02;
+    player.skin.leftLeg.rotation.x = -0.05;
+    player.skin.leftLeg.rotation.z = 0.02;
+
+    if (player.cape) {
+      player.cape.rotation.x = Math.sin(t) * 0.025 + 0.14;
+    }
+  }
+}
+
+export function respiration(): PlayerAnimation {
+  const anim = new RespirationCouture();
   anim.speed = 0.55;
   return anim;
+}
+
+/**
+ * Applique une pose de mannequin élégante et vivante pour les captures statiques :
+ * les bras ne longent pas le corps de manière inanimée mais sont décollés et posés.
+ */
+export function appliquerPoseCouture(vue: SkinViewer) {
+  const skin = vue.playerObject.skin;
+  skin.resetJoints();
+
+  // Bras délicatement écartés du corps pour sublimer la silhouette et les manches
+  skin.rightArm.rotation.z = -0.14;
+  skin.rightArm.rotation.x = -0.07;
+  skin.rightArm.rotation.y = 0.03;
+
+  skin.leftArm.rotation.z = 0.15;
+  skin.leftArm.rotation.x = 0.11;
+  skin.leftArm.rotation.y = -0.03;
+
+  // Stance couture défilé
+  skin.rightLeg.rotation.x = 0.07;
+  skin.rightLeg.rotation.z = -0.025;
+  skin.leftLeg.rotation.x = -0.07;
+  skin.leftLeg.rotation.z = 0.025;
+
+  // Tête tournée avec grâce vers la caméra
+  skin.head.rotation.y = -0.10;
+  skin.head.rotation.x = 0.03;
+  skin.head.rotation.z = 0.02;
+
+  if (vue.playerObject.cape) {
+    vue.playerObject.cape.rotation.x = 0.14;
+  }
 }
 
 /** Charge un skin dans une vue existante (on ne recrée jamais la vue). */
@@ -150,6 +231,7 @@ export function photographier(vue: SkinViewer): Photos {
 
   vue.renderPaused = true;
   vue.animation = null;
+  appliquerPoseCouture(vue);
   vue.globalLight.intensity = LUMIERE.ambiante;
   vue.cameraLight.intensity = LUMIERE.projecteur;
   vue.pixelRatio = 1;
@@ -181,6 +263,7 @@ export function photographier(vue: SkinViewer): Photos {
   vue.controls.update();
   vue.globalLight.intensity = lumieres[0];
   vue.cameraLight.intensity = lumieres[1];
+  vue.playerObject.resetJoints();
   vue.animation = animation;
   vue.render();
   vue.renderPaused = enPause;

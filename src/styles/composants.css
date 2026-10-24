@@ -5,9 +5,7 @@
 .embleme {
   display: inline-block;
   aspect-ratio: 1623 / 1839;
-  background-color: var(--couleur-embleme);
-  -webkit-mask: var(--deco-embleme) center / contain no-repeat;
-  mask: var(--deco-embleme) center / contain no-repeat;
+  background: var(--deco-embleme) center / contain no-repeat;
 }
 
 /* ── En-tête ──────────────────────────────────────────────────────── */
@@ -70,14 +68,28 @@
 }
 
 .entete__coulisses {
-  font-size: var(--texte-legende);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   color: var(--couleur-texte-discret);
   margin-left: var(--espace-4);
+  padding: var(--espace-1);
+  border-radius: var(--rayon-court);
+  transition:
+    color var(--duree-moyenne) var(--courbe-douce),
+    transform var(--duree-courte) var(--courbe-douce);
 }
 
 .entete__coulisses:hover,
 .entete__coulisses[aria-current="page"] {
   color: var(--couleur-accent);
+  transform: scale(1.08);
+}
+
+.entete__coulisses-icone {
+  display: block;
+  width: 1.15rem;
+  height: 1.15rem;
 }
 
 .entete__marque {
@@ -727,3 +739,72 @@
   background: none;
   cursor: pointer;
 }
+
+/* ── Écran d'inaccessibilité mobile ──────────────────────────────── */
+
+.ecran-mobile {
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  .ecran-mobile {
+    position: fixed;
+    inset: 0;
+    z-index: 100000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--espace-6);
+    background-color: var(--couleur-fond);
+    background-image: radial-gradient(circle at center, rgb(155 27 48 / 0.14), transparent 70%);
+  }
+
+  body {
+    overflow: hidden;
+  }
+
+  .ecran-mobile__carte {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 28rem;
+    padding: var(--espace-7) var(--espace-5);
+    background: var(--couleur-fond-eleve);
+    border: var(--deco-cadre-portrait);
+    border-radius: var(--rayon-moyen);
+    box-shadow: var(--ombre-portee);
+  }
+
+  .ecran-mobile__embleme {
+    height: 4.5rem;
+    margin-bottom: var(--espace-3);
+  }
+
+  .ecran-mobile__marque {
+    font-family: var(--police-marque);
+    font-size: var(--texte-marque);
+    letter-spacing: var(--approche-marque);
+    text-transform: var(--casse-marque);
+    color: var(--couleur-texte);
+  }
+
+  .ecran-mobile .ornement {
+    width: 60%;
+    margin-block: var(--espace-4);
+  }
+
+  .ecran-mobile__titre {
+    margin-bottom: var(--espace-3);
+  }
+
+  .ecran-mobile__texte {
+    line-height: var(--interligne-texte);
+    margin-bottom: var(--espace-4);
+  }
+
+  .ecran-mobile__precision {
+    color: var(--couleur-texte-discret);
+  }
+}
+

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, EB_Garamond } from "next/font/google";
+import { AvertissementMobile } from "@/components/AvertissementMobile";
 import { Entete } from "@/components/Entete";
 import { PiedDePage } from "@/components/PiedDePage";
 import { MAISON } from "@/lib/maison";
@@ -46,6 +47,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script dangerouslySetInnerHTML={{ __html: scriptRideaux }} />
       </head>
       <body>
+        <AvertissementMobile />
         <a className="lien-evitement" href="#contenu">
           Aller au contenu
         </a>

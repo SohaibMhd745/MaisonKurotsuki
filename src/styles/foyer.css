@@ -82,15 +82,65 @@ html[data-rideaux="ouverts"] .rideaux {
 }
 
 .scene__tenue {
-  display: grid;
-  place-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: calc(var(--scene-hauteur) - 2 * var(--espace-7));
+  width: 100%;
+  position: relative;
+}
+
+.scene__vue-3d {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.scene__vue-skin {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: grab;
+  filter: drop-shadow(var(--ombre-portee));
+  opacity: 0;
+  transition: opacity var(--duree-longue) var(--courbe-douce);
+}
+
+.scene__vue-skin:active {
+  cursor: grabbing;
+}
+
+.scene__vue-skin--active {
+  opacity: 1;
+}
+
+.scene__vue-skin canvas {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain;
 }
 
 .scene__portrait {
   height: 100%;
   width: auto;
   filter: drop-shadow(var(--ombre-portee));
+}
+
+.scene__portrait--repli {
+  position: absolute;
+  transition: opacity var(--duree-longue) var(--courbe-douce);
+  pointer-events: none;
+}
+
+.scene__portrait--masque {
+  opacity: 0;
 }
 
 .scene__texte {
@@ -111,6 +161,47 @@ html[data-rideaux="ouverts"] .rideaux {
 }
 
 /* ── Collections ──────────────────────────────────────────────────── */
+
+.collections__entete {
+  display: grid;
+  justify-items: center;
+  gap: var(--espace-2);
+  margin-bottom: var(--espace-7);
+  text-align: center;
+}
+
+.collections__surtitre {
+  font-family: var(--police-legende);
+  font-size: var(--texte-petit);
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--couleur-accent);
+  margin: 0;
+}
+
+.collections__titre {
+  font-family: var(--police-titre);
+  font-size: clamp(2.6rem, 5vw, 4.4rem);
+  font-weight: 500;
+  line-height: 1.08;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--couleur-texte);
+  text-shadow: 0 2px 20px rgb(0 0 0 / 0.5);
+  margin: 0;
+}
+
+.collections__ornement {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: var(--espace-3);
+  width: 100%;
+  max-width: 320px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, var(--couleur-accent) 50%, transparent 100%);
+  opacity: 0.7;
+}
 
 .collections-cartes {
   display: grid;
@@ -144,34 +235,4 @@ html[data-rideaux="ouverts"] .rideaux {
   height: var(--collection-vignette-hauteur);
   margin-bottom: var(--espace-3);
   background-image: var(--deco-motif-dentelle);
-}
-
-/* ── Dernière création ────────────────────────────────────────────── */
-
-.derniere {
-  display: grid;
-  grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
-  align-items: center;
-  gap: var(--espace-7);
-}
-
-.derniere__image {
-  aspect-ratio: var(--portrait-ratio);
-  max-height: 80vh;
-  justify-self: center;
-}
-
-.derniere__texte {
-  display: grid;
-  gap: var(--espace-3);
-  justify-items: start;
-  max-width: var(--largeur-texte);
-}
-
-.derniere__texte .ornement {
-  width: 100%;
-}
-
-.derniere__details {
-  color: var(--couleur-texte-doux);
 }
