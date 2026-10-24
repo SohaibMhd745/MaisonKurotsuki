@@ -20,6 +20,7 @@ interface Props {
   /** Image affichée si WebGL n'est pas disponible. */
   repli?: React.ReactNode;
   capture?: boolean;
+  zoom?: boolean;
   libelle: string;
   onPret?: () => void;
   onInteraction?: () => void;
@@ -30,7 +31,7 @@ interface Props {
  * réutilise à chaque changement de tenue et se libère en quittant la page.
  */
 export const VueSkin = forwardRef<VueSkinRef, Props>(function VueSkin(
-  { className = "", repli, capture = false, libelle, onPret, onInteraction },
+  { className = "", repli, capture = false, zoom = true, libelle, onPret, onInteraction },
   ref,
 ) {
   const conteneur = useRef<HTMLDivElement>(null);
@@ -55,6 +56,7 @@ export const VueSkin = forwardRef<VueSkinRef, Props>(function VueSkin(
         largeur: Math.max(1, width),
         hauteur: Math.max(1, height),
         capture,
+        zoom,
       });
     } catch {
       setSansWebgl(true);
@@ -75,7 +77,7 @@ export const VueSkin = forwardRef<VueSkinRef, Props>(function VueSkin(
       instance.dispose();
       vue.current = null;
     };
-  }, [capture]);
+  }, [capture, zoom]);
 
   useImperativeHandle(
     ref,

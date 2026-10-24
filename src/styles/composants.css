@@ -71,19 +71,21 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: var(--couleur-texte-discret);
+  color: var(--palette-or);
   margin-left: var(--espace-4);
   padding: var(--espace-1);
   border-radius: var(--rayon-court);
   transition:
     color var(--duree-moyenne) var(--courbe-douce),
+    filter var(--duree-moyenne) var(--courbe-douce),
     transform var(--duree-courte) var(--courbe-douce);
 }
 
 .entete__coulisses:hover,
 .entete__coulisses[aria-current="page"] {
-  color: var(--couleur-accent);
-  transform: scale(1.08);
+  color: var(--palette-or-pale);
+  filter: drop-shadow(0 0 6px rgb(196 154 90 / 0.5));
+  transform: scale(1.1);
 }
 
 .entete__coulisses-icone {
@@ -100,7 +102,7 @@
   font-family: var(--police-marque);
   font-weight: var(--graisse-marque);
   font-size: var(--texte-marque);
-  letter-spacing: var(--approche-marque);
+  letter-spacing: 0.12em;
   text-transform: var(--casse-marque);
   white-space: nowrap;
 }

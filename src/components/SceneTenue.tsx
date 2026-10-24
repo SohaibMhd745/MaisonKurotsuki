@@ -22,7 +22,10 @@ export function SceneTenue({ tenue }: { tenue: Tenue }) {
         if (!actif) return;
         vueRef.current?.charger(image, tenue.gabarit);
         const v = vueRef.current?.vue();
-        if (v) regarderTroisQuarts(v);
+        if (v) {
+          v.controls.enableZoom = false;
+          regarderTroisQuarts(v);
+        }
         setCharge(true);
       })
       .catch(() => {});
@@ -36,12 +39,16 @@ export function SceneTenue({ tenue }: { tenue: Tenue }) {
     <div className="scene__vue-3d">
       <VueSkin
         ref={vueRef}
+        zoom={false}
         className={`scene__vue-skin ${charge ? "scene__vue-skin--active" : "scene__vue-skin--chargement"}`}
         libelle={`${tenue.nom}, vue vivante en trois dimensions. Faites glisser pour tourner.`}
         repli={<ImageTenue tenue={tenue} prioritaire className="scene__portrait" />}
         onPret={() => {
           const v = vueRef.current?.vue();
-          if (v) regarderTroisQuarts(v);
+          if (v) {
+            v.controls.enableZoom = false;
+            regarderTroisQuarts(v);
+          }
         }}
       />
       <ImageTenue

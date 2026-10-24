@@ -12,13 +12,8 @@ export function AvertissementMobile() {
         <Embleme className="ecran-mobile__embleme" />
         <p className="ecran-mobile__marque">{MAISON.nomCourt}</p>
         <div className="ornement" aria-hidden />
-        <h2 className="titre-2 ecran-mobile__titre">Site réservé sur ordinateur</h2>
-        <p className="texte-doux ecran-mobile__texte">
-          L&apos;expérience et les présentations de haute couture de la Maison Kurotsuki sont conçues exclusivement pour un affichage sur grand écran.
-        </p>
-        <p className="legende ecran-mobile__precision">
-          Veuillez accéder au site depuis un ordinateur pour contempler les créations.
-        </p>
+        <h2 className="titre-2 ecran-mobile__titre">Réservé aux ordinateurs</h2>
+        <p className="texte-doux ecran-mobile__texte">L&apos;expérience et les présentations de haute couture de la Maison Kurotsuki sont conçues exclusivement pour un affichage sur grand écran.</p>
       </div>
     </aside>
   );

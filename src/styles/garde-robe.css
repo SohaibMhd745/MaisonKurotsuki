@@ -47,8 +47,8 @@
 
 .portrait__cadre {
   display: block;
-  aspect-ratio: var(--portrait-ratio);
-  padding: var(--espace-4);
+  aspect-ratio: 1 / 1.7;
+  padding: var(--espace-2) var(--espace-3);
   border: var(--deco-cadre-portrait);
   background: var(--couleur-fond-eleve);
   margin-bottom: var(--espace-2);

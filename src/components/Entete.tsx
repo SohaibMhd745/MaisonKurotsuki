@@ -6,11 +6,10 @@ import { MAISON } from "@/lib/maison";
 import { Embleme } from "./Embleme";
 
 const GAUCHE = [
-  { href: "/", libelle: "Foyer", actif: (p: string) => p === "/" },
   { href: "/garde-robe", libelle: "Garde-robe", actif: (p: string) => p.startsWith("/garde-robe") },
+  { href: "/lookbook", libelle: "Lookbook", actif: (p: string) => p.startsWith("/lookbook") },
 ];
 const DROITE = [
-  { href: "/lookbook", libelle: "Lookbook", actif: (p: string) => p.startsWith("/lookbook") },
   { href: "/jury", libelle: "Jury", actif: (p: string) => p.startsWith("/jury") },
 ];
 

@@ -149,6 +149,10 @@ html[data-rideaux="ouverts"] .rideaux {
   justify-items: start;
 }
 
+.marque--scene {
+  letter-spacing: 0.12em;
+}
+
 .scene__accroche {
   max-width: var(--largeur-texte);
 }

@@ -39,9 +39,17 @@ export interface OptionsVue {
   hauteur: number;
   animation?: boolean;
   capture?: boolean;
+  zoom?: boolean;
 }
 
-export function creerVue({ canvas, largeur, hauteur, animation = true, capture = false }: OptionsVue): SkinViewer {
+export function creerVue({
+  canvas,
+  largeur,
+  hauteur,
+  animation = true,
+  capture = false,
+  zoom = true,
+}: OptionsVue): SkinViewer {
   const vue = new SkinViewer({
     canvas,
     width: largeur,
@@ -54,7 +62,7 @@ export function creerVue({ canvas, largeur, hauteur, animation = true, capture =
   vue.globalLight.intensity = LUMIERE.ambiante;
   vue.cameraLight.intensity = LUMIERE.projecteur;
   vue.controls.enablePan = false;
-  vue.controls.enableZoom = true;
+  vue.controls.enableZoom = zoom;
   vue.controls.minDistance = DISTANCE_MIN;
   vue.controls.maxDistance = DISTANCE_MAX;
   vue.controls.rotateSpeed = 0.7;
