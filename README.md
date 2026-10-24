@@ -35,13 +35,15 @@ Copier `.env.example` vers `.env.local` et remplir :
 
 | Variable | Où la trouver |
 | --- | --- |
-| `NEXT_PUBLIC_SUPABASE_URL` | Supabase > Project Settings > API |
-| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | même page, clé `anon` (publique) |
+| `NEXT_PUBLIC_SUPABASE_URL` | Supabase > Project Settings > Data API, « Project URL » (`https://xxxxxxxx.supabase.co`) |
+| `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` | Supabase > Project Settings > API Keys, clé `sb_publishable_…` |
 | `NEXT_PUBLIC_SITE_URL` | adresse publique du site |
 | `CRON_SECRET` | une longue chaîne aléatoire |
 
-La clé de service Supabase n'est pas utilisée : toutes les écritures passent par la session du membre et sont
-contrôlées par les règles d'accès.
+La clé secrète Supabase (`sb_secret_…`) n'est pas utilisée et ne doit figurer dans aucune variable : toutes les
+écritures passent par la session du membre et sont contrôlées par les règles d'accès. Le build s'arrête si elle
+est collée par erreur à la place de la clé publishable. Une ancienne clé `anon` dans
+`NEXT_PUBLIC_SUPABASE_ANON_KEY` reste acceptée.
 
 ### 4. Lancer en local
 
@@ -53,7 +55,7 @@ npm run dev
 ### 5. Mettre en ligne sur Vercel
 
 1. Importer le dépôt dans Vercel, avec `Application` comme *Root Directory*.
-2. Ajouter les quatre variables d'environnement.
+2. Ajouter les quatre variables d'environnement (Production et Preview).
 3. Déployer. La tâche quotidienne de `vercel.json` appelle `/api/veille` chaque matin : cette petite requête
    évite la mise en pause du projet Supabase gratuit.
 
