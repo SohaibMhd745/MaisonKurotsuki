@@ -1,0 +1,334 @@
+/* Les Coulisses et la connexion. Valeurs : tokens.css. */
+
+/* ── Connexion ────────────────────────────────────────────────────── */
+
+.connexion {
+  display: grid;
+  place-items: center;
+  min-height: calc(100vh - var(--hauteur-entete) - 2 * var(--espace-8));
+}
+
+.connexion__carte {
+  display: grid;
+  justify-items: center;
+  gap: var(--espace-4);
+  width: min(var(--modal-largeur), 100%);
+  padding: var(--espace-7) var(--espace-6);
+  border: var(--taille-bordure) solid var(--couleur-bordure);
+  border-radius: var(--rayon-moyen);
+  background: var(--couleur-fond-eleve);
+  text-align: center;
+}
+
+.connexion__embleme {
+  height: var(--espace-8);
+}
+
+/* ── Atelier ──────────────────────────────────────────────────────── */
+
+.coulisses__compte {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--espace-3);
+}
+
+.onglets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espace-1);
+  margin-bottom: var(--espace-6);
+  border-bottom: var(--taille-bordure) solid var(--couleur-bordure);
+}
+
+.onglet {
+  padding: var(--espace-2) var(--espace-4);
+  border: none;
+  border-bottom: var(--taille-focus) solid transparent;
+  background: transparent;
+  color: var(--couleur-texte-doux);
+  font-family: var(--police-legende);
+  font-size: var(--texte-petit);
+  letter-spacing: var(--approche-legende);
+  text-transform: var(--casse-legende);
+  cursor: pointer;
+  transition:
+    color var(--duree-moyenne) var(--courbe-douce),
+    border-color var(--duree-moyenne) var(--courbe-douce);
+}
+
+.onglet:hover {
+  color: var(--couleur-texte);
+}
+
+.onglet[aria-current="page"] {
+  color: var(--couleur-texte);
+  border-bottom-color: var(--couleur-accent);
+}
+
+.coulisses__atelier {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) var(--miroir-largeur);
+  gap: var(--espace-7);
+  align-items: start;
+}
+
+.coulisses__contenu {
+  min-width: 0;
+}
+
+.section-coulisses {
+  display: grid;
+  gap: var(--espace-4);
+  animation: apparition var(--duree-transition) var(--courbe-douce);
+}
+
+.bloc {
+  display: grid;
+  gap: var(--espace-3);
+  justify-items: start;
+  padding: var(--espace-5);
+  border: var(--taille-bordure) solid var(--couleur-bordure);
+  border-radius: var(--rayon-moyen);
+}
+
+/* ── Miroir de loge ───────────────────────────────────────────────── */
+
+.miroir {
+  position: sticky;
+  top: calc(var(--hauteur-entete) + var(--espace-5));
+  display: grid;
+  gap: var(--espace-2);
+  text-align: center;
+}
+
+.miroir__cadre {
+  position: relative;
+  height: var(--miroir-hauteur);
+  border: var(--deco-cadre-portrait);
+  border-radius: var(--rayon-grand) var(--rayon-grand) var(--rayon-moyen) var(--rayon-moyen);
+  background: var(--couleur-fond-eleve);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.miroir__vue {
+  position: absolute;
+  inset: 0;
+}
+
+.miroir__invite,
+.miroir__repli {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: var(--espace-4);
+  pointer-events: none;
+}
+
+/* ── Nouvelle tenue ───────────────────────────────────────────────── */
+
+.depot {
+  display: grid;
+  justify-items: center;
+  gap: var(--espace-2);
+  padding: var(--espace-7) var(--espace-5);
+  border: var(--taille-bordure) dashed var(--couleur-bordure-forte);
+  border-radius: var(--rayon-moyen);
+  background: var(--couleur-fond-eleve);
+  text-align: center;
+  transition:
+    background-color var(--duree-moyenne) var(--courbe-douce),
+    border-color var(--duree-moyenne) var(--courbe-douce);
+}
+
+.depot--compact {
+  padding: var(--espace-4);
+}
+
+.depot--survol {
+  border-color: var(--couleur-accent);
+  background: var(--couleur-surface);
+}
+
+.nouvelle-tenue__fichier {
+  display: grid;
+  gap: var(--espace-2);
+}
+
+.verifications {
+  display: grid;
+  gap: var(--espace-1);
+}
+
+.verification {
+  display: flex;
+  align-items: baseline;
+  gap: var(--espace-2);
+  font-size: var(--texte-petit);
+}
+
+.verification--ok {
+  color: var(--couleur-texte-doux);
+}
+
+.verification--ok .verification__marque {
+  color: var(--couleur-succes);
+}
+
+.verification--refus {
+  color: var(--couleur-erreur);
+}
+
+.celebration {
+  display: grid;
+  justify-items: center;
+  gap: var(--espace-3);
+  padding: var(--espace-8) var(--espace-5);
+  text-align: center;
+  animation: apparition var(--duree-transition) var(--courbe-douce);
+}
+
+.celebration .ornement {
+  width: min(var(--ornement-largeur), 100%);
+}
+
+.celebration__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--espace-3);
+  margin-top: var(--espace-4);
+}
+
+/* ── Mes tenues, mes collections ──────────────────────────────────── */
+
+.groupe-tenues {
+  display: grid;
+  gap: var(--espace-3);
+  margin-top: var(--espace-4);
+}
+
+.ligne-tenue {
+  display: grid;
+  grid-template-columns: auto var(--espace-7) minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--espace-3);
+  padding: var(--espace-2) var(--espace-3) var(--espace-2) 0;
+}
+
+.ligne-tenue--masquee .ligne-tenue__apercu,
+.ligne-tenue--brouillon .ligne-tenue__apercu {
+  opacity: 0.5;
+}
+
+.ligne-tenue__apercu {
+  height: var(--espace-8);
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.ligne-tenue__infos {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--espace-2) var(--espace-3);
+}
+
+.ligne-tenue__nom {
+  padding: 0;
+  border: none;
+  background: transparent;
+  font-family: var(--police-titre);
+  font-size: var(--texte-titre-3);
+  cursor: pointer;
+}
+
+.ligne-tenue__nom:hover {
+  color: var(--couleur-accent);
+}
+
+.ligne-tenue__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: var(--espace-1);
+}
+
+.ligne-collection {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: start;
+  gap: var(--espace-3);
+  padding: var(--espace-3) var(--espace-3) var(--espace-3) 0;
+}
+
+.ligne-collection .poignee {
+  padding-top: var(--espace-2);
+}
+
+.ligne-collection__champs {
+  display: grid;
+  gap: var(--espace-2);
+}
+
+.ligne-collection__infos {
+  display: grid;
+  justify-items: end;
+  gap: var(--espace-2);
+}
+
+/* ── La lettre ────────────────────────────────────────────────────── */
+
+.lettre-voile {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: grid;
+  place-items: center;
+  padding: var(--espace-5);
+  overflow-y: auto;
+  background: var(--couleur-voile-modal);
+  animation: apparition var(--duree-transition) var(--courbe-douce);
+}
+
+.lettre {
+  display: grid;
+  justify-items: center;
+  gap: var(--espace-5);
+  width: min(var(--lettre-largeur), 100%);
+  padding: var(--espace-8) var(--espace-7);
+  border: var(--deco-cadre-portrait);
+  background: var(--couleur-fond-eleve);
+  background-image: var(--deco-motif-dentelle);
+  box-shadow: var(--ombre-portee);
+}
+
+.lettre__embleme {
+  height: var(--espace-8);
+}
+
+.lettre__texte {
+  display: grid;
+  gap: var(--espace-4);
+  width: 100%;
+  font-family: var(--police-sous-titre);
+  font-size: var(--texte-sous-titre);
+  line-height: var(--interligne-texte);
+  white-space: pre-line;
+}
+
+.lettre__signature {
+  justify-self: end;
+  font-family: var(--police-sous-titre);
+  font-style: italic;
+  font-size: var(--texte-titre-3);
+  color: var(--couleur-accent);
+}
+
+.lettre__ranger {
+  margin-top: var(--espace-4);
+}

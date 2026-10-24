@@ -1,0 +1,69 @@
+/* La Garde-robe. Valeurs : tokens.css. */
+
+.filtres {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--espace-4);
+  margin-bottom: var(--espace-5);
+}
+
+.filtres__collections {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espace-2);
+}
+
+.filtres__outils {
+  display: flex;
+  gap: var(--espace-3);
+}
+
+.filtres__outils input {
+  min-width: var(--recherche-largeur-min);
+}
+
+.garde-robe__description {
+  max-width: var(--largeur-texte);
+  margin-bottom: var(--espace-4);
+}
+
+.garde-robe__compte {
+  margin-bottom: var(--espace-4);
+}
+
+.portraits {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(var(--portrait-largeur-min), 1fr));
+  gap: var(--espace-6) var(--espace-5);
+}
+
+.portrait {
+  display: grid;
+  gap: var(--espace-1);
+  text-decoration: none;
+  text-align: center;
+}
+
+.portrait__cadre {
+  display: block;
+  aspect-ratio: var(--portrait-ratio);
+  padding: var(--espace-4);
+  border: var(--deco-cadre-portrait);
+  background: var(--couleur-fond-eleve);
+  margin-bottom: var(--espace-2);
+  transition:
+    border-color var(--duree-moyenne) var(--courbe-douce),
+    background-color var(--duree-moyenne) var(--courbe-douce);
+}
+
+.portrait:hover .portrait__cadre {
+  border: var(--deco-cadre-portrait-survol);
+  background: var(--couleur-surface);
+}
+
+.portrait__nom {
+  font-family: var(--police-titre);
+  font-size: var(--texte-titre-3);
+  line-height: var(--interligne-titre);
+}

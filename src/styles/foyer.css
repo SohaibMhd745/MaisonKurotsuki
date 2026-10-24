@@ -1,0 +1,177 @@
+/* Le Foyer. Valeurs : tokens.css. */
+
+/* ── Rideaux ──────────────────────────────────────────────────────── */
+
+.rideaux {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  cursor: pointer;
+}
+
+html[data-rideaux="ouverts"] .rideaux {
+  display: none;
+}
+
+.rideaux__pan {
+  flex: 1;
+  background-color: var(--couleur-rideau);
+  background-image: var(--deco-rideau);
+  box-shadow: var(--ombre-portee);
+  animation: var(--duree-rideaux) var(--courbe-rideaux) var(--delai-rideaux) forwards;
+}
+
+.rideaux__pan--gauche {
+  animation-name: rideau-gauche;
+}
+
+.rideaux__pan--droite {
+  animation-name: rideau-droite;
+}
+
+@keyframes rideau-gauche {
+  to {
+    transform: translateX(-101%);
+  }
+}
+
+@keyframes rideau-droite {
+  to {
+    transform: translateX(101%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rideaux {
+    display: none;
+  }
+}
+
+/* ── Scène principale ─────────────────────────────────────────────── */
+
+.scene {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  min-height: var(--scene-hauteur);
+  max-width: var(--largeur-page);
+  margin-inline: auto;
+  padding: var(--espace-6) var(--espace-5);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.scene__projecteur {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(ellipse 40% 70% at 30% 35%, var(--couleur-projecteur), transparent 70%);
+  pointer-events: none;
+}
+
+.scene__embleme {
+  position: absolute;
+  z-index: -1;
+  left: 30%;
+  top: 50%;
+  height: var(--taille-embleme-scene);
+  transform: translate(-50%, -50%);
+  opacity: var(--opacite-embleme-scene);
+}
+
+.scene__tenue {
+  display: grid;
+  place-items: center;
+  height: calc(var(--scene-hauteur) - 2 * var(--espace-7));
+}
+
+.scene__portrait {
+  height: 100%;
+  width: auto;
+  filter: drop-shadow(var(--ombre-portee));
+}
+
+.scene__texte {
+  display: grid;
+  gap: var(--espace-4);
+  justify-items: start;
+}
+
+.scene__accroche {
+  max-width: var(--largeur-texte);
+}
+
+.scene__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espace-3);
+  margin-top: var(--espace-4);
+}
+
+/* ── Collections ──────────────────────────────────────────────────── */
+
+.collections-cartes {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(var(--carte-collection-largeur-min), 1fr));
+  gap: var(--espace-5);
+}
+
+.carte-collection {
+  display: grid;
+  gap: var(--espace-2);
+  height: 100%;
+  padding: var(--espace-5);
+  border: var(--deco-cadre-portrait);
+  border-radius: var(--rayon-moyen);
+  background: var(--couleur-fond-eleve);
+  text-decoration: none;
+  transition:
+    border-color var(--duree-moyenne) var(--courbe-douce),
+    background-color var(--duree-moyenne) var(--courbe-douce);
+}
+
+.carte-collection:hover {
+  border: var(--deco-cadre-portrait-survol);
+  background: var(--couleur-surface);
+}
+
+.carte-collection__tenues {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: end;
+  height: var(--collection-vignette-hauteur);
+  margin-bottom: var(--espace-3);
+  background-image: var(--deco-motif-dentelle);
+}
+
+/* ── Dernière création ────────────────────────────────────────────── */
+
+.derniere {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+  align-items: center;
+  gap: var(--espace-7);
+}
+
+.derniere__image {
+  aspect-ratio: var(--portrait-ratio);
+  max-height: 80vh;
+  justify-self: center;
+}
+
+.derniere__texte {
+  display: grid;
+  gap: var(--espace-3);
+  justify-items: start;
+  max-width: var(--largeur-texte);
+}
+
+.derniere__texte .ornement {
+  width: 100%;
+}
+
+.derniere__details {
+  color: var(--couleur-texte-doux);
+}

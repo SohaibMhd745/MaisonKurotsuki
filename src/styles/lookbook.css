@@ -1,0 +1,213 @@
+/* Le Lookbook. Valeurs : tokens.css. */
+
+.lookbook {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) var(--lookbook-panneau-largeur);
+  grid-template-rows: minmax(0, 1fr) var(--lookbook-bande-hauteur);
+  height: calc(100vh - var(--hauteur-entete));
+  background: var(--couleur-fond);
+}
+
+.lookbook__scene {
+  position: relative;
+  min-height: 0;
+  isolation: isolate;
+}
+
+.lookbook__projecteur {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(ellipse 32% 60% at 50% 30%, var(--couleur-projecteur), transparent 72%);
+  pointer-events: none;
+}
+
+.lookbook__sol {
+  position: absolute;
+  left: 30%;
+  right: 30%;
+  bottom: 6%;
+  height: 8%;
+  z-index: -1;
+  background: radial-gradient(ellipse at center, var(--couleur-scene-sol), transparent 70%);
+  pointer-events: none;
+}
+
+.lookbook__vue,
+.lookbook__scene > .vue-skin--repli {
+  position: absolute;
+  inset: 0;
+}
+
+.lookbook__scene .vue-skin--repli .image-tenue {
+  height: 90%;
+}
+
+.lookbook__chargement {
+  position: absolute;
+  left: 50%;
+  bottom: var(--espace-5);
+  width: var(--espace-7);
+  height: var(--taille-bordure);
+  transform: translateX(-50%);
+  background: var(--deco-ornement-separation);
+  animation: pulsation 900ms var(--courbe-douce) infinite alternate;
+}
+
+@keyframes pulsation {
+  from {
+    opacity: 0.2;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.lookbook__fleche {
+  position: absolute;
+  top: 50%;
+  display: grid;
+  place-items: center;
+  width: var(--espace-7);
+  height: var(--espace-7);
+  transform: translateY(-50%);
+  border: var(--taille-bordure) solid var(--couleur-bordure);
+  border-radius: var(--rayon-pilule);
+  background: var(--couleur-fond-eleve);
+  color: var(--couleur-texte);
+  font-size: var(--texte-titre-2);
+  line-height: 1;
+  cursor: pointer;
+  transition: border-color var(--duree-moyenne) var(--courbe-douce);
+}
+
+.lookbook__fleche:hover:not(:disabled) {
+  border-color: var(--couleur-accent);
+}
+
+.lookbook__fleche:disabled {
+  opacity: 0.3;
+}
+
+.lookbook__fleche--prec {
+  left: var(--espace-5);
+}
+
+.lookbook__fleche--suiv {
+  right: var(--espace-5);
+}
+
+.lookbook__panneau {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espace-3);
+  padding: var(--espace-6) var(--espace-5);
+  border-left: var(--taille-bordure) solid var(--couleur-bordure);
+  overflow-y: auto;
+}
+
+.lookbook__nom {
+  animation: apparition var(--duree-transition) var(--courbe-douce);
+}
+
+.lookbook__details {
+  display: grid;
+  gap: var(--espace-2);
+  color: var(--couleur-texte-doux);
+}
+
+.lookbook__commandes {
+  display: grid;
+  justify-items: start;
+  gap: var(--espace-3);
+  margin-top: auto;
+  padding-top: var(--espace-5);
+}
+
+.lookbook__bande {
+  grid-column: 1 / -1;
+  border-top: var(--taille-bordure) solid var(--couleur-bordure);
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.lookbook__bande ol {
+  display: flex;
+  gap: var(--espace-2);
+  height: 100%;
+  padding: var(--espace-2) var(--espace-5);
+  width: max-content;
+  margin-inline: auto;
+}
+
+.lookbook__vignette {
+  height: 100%;
+  width: var(--lookbook-vignette-largeur);
+  padding: var(--espace-1);
+  border: var(--taille-bordure) solid transparent;
+  border-radius: var(--rayon-petit);
+  background: transparent;
+  opacity: 0.55;
+  cursor: pointer;
+  transition:
+    opacity var(--duree-moyenne) var(--courbe-douce),
+    border-color var(--duree-moyenne) var(--courbe-douce);
+}
+
+.lookbook__vignette:hover {
+  opacity: 0.9;
+}
+
+.lookbook__vignette[aria-current="true"] {
+  opacity: 1;
+  border-color: var(--couleur-accent);
+  background: var(--couleur-surface);
+}
+
+.lookbook__nom-plein-ecran {
+  display: none;
+}
+
+/* Plein écran : seuls la scène, le nom et les flèches restent. */
+.lookbook--plein-ecran {
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  height: 100vh;
+}
+
+.lookbook--plein-ecran .lookbook__panneau,
+.lookbook--plein-ecran .lookbook__bande {
+  display: none;
+}
+
+.lookbook--plein-ecran .lookbook__nom-plein-ecran {
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: var(--espace-6);
+  text-align: center;
+  pointer-events: none;
+}
+
+/* ── Aperçu 3D dans le Jury ───────────────────────────────────────── */
+
+.apercu__contenu {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+  gap: var(--espace-5);
+  align-items: center;
+}
+
+.apercu__scene {
+  position: relative;
+  height: 70vh;
+  isolation: isolate;
+}
+
+.apercu__texte {
+  display: grid;
+  gap: var(--espace-3);
+  justify-items: start;
+  color: var(--couleur-texte-doux);
+}

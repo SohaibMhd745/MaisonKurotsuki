@@ -1,0 +1,177 @@
+/*
+ * Maison Kurotsuki — jetons de design.
+ *
+ * Toute valeur visuelle du site passe par ces variables : couleurs,
+ * typographies, tailles, espacements, rayons, ombres, durées et éléments
+ * décoratifs. Le design system final remplace ce fichier (ou ses valeurs)
+ * sans toucher aux composants.
+ *
+ * Thème unique : sombre.
+ */
+
+:root {
+  color-scheme: dark;
+
+  /* ── Palette de référence (provisoire) ─────────────────────────── */
+  --palette-noir: #0b0a0c;
+  --palette-nuit: #141116;
+  --palette-ombre: #1d181f;
+  --palette-voile: #2a2229;
+  --palette-bordeaux: #5e1424;
+  --palette-cramoisi: #9b1b30;
+  --palette-prune: #4a2340;
+  --palette-or: #c49a5a;
+  --palette-or-pale: #e2c48f;
+  --palette-ivoire: #efe6d8;
+  --palette-ivoire-voile: #b8ae9f;
+  --palette-cendre: #7d7378;
+
+  /* ── Rôles de couleur ──────────────────────────────────────────── */
+  --couleur-fond: var(--palette-noir);
+  --couleur-fond-eleve: var(--palette-nuit);
+  --couleur-surface: var(--palette-ombre);
+  --couleur-surface-survol: var(--palette-voile);
+  --couleur-bordure: rgb(196 154 90 / 0.18);
+  --couleur-bordure-forte: rgb(196 154 90 / 0.45);
+  --couleur-texte: var(--palette-ivoire);
+  --couleur-texte-doux: var(--palette-ivoire-voile);
+  --couleur-texte-discret: var(--palette-cendre);
+  --couleur-accent: var(--palette-or);
+  --couleur-accent-vif: var(--palette-or-pale);
+  --couleur-accent-texte: var(--palette-noir);
+  --couleur-marque: var(--palette-cramoisi);
+  --couleur-embleme: var(--palette-cramoisi);
+  --couleur-focus: var(--palette-or-pale);
+  --couleur-succes: #8fae8b;
+  --couleur-alerte: #d9a441;
+  --couleur-erreur: #e06c75;
+  --couleur-voile-modal: rgb(5 4 6 / 0.82);
+  --couleur-rideau: var(--palette-bordeaux);
+  --couleur-rideau-pli: rgb(0 0 0 / 0.35);
+  --couleur-projecteur: rgb(239 230 216 / 0.13);
+  --couleur-scene-sol: rgb(196 154 90 / 0.08);
+
+  /* Palette proposée pour les rangs des tier lists (palette:1 … palette:8). */
+  --rang-1: #9b1b30;
+  --rang-2: #b5543a;
+  --rang-3: #c49a5a;
+  --rang-4: #6f7f5a;
+  --rang-5: #4a5d7a;
+  --rang-6: #4a2340;
+  --rang-7: #6b6168;
+  --rang-8: #2a2229;
+  --rang-texte: var(--palette-ivoire);
+  --rang-texte-sur-clair: var(--palette-noir);
+
+  /* ── Typographie ───────────────────────────────────────────────── */
+  --police-marque: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
+  --police-titre: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
+  --police-sous-titre: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
+  --police-texte: var(--font-garamond), "EB Garamond", Georgia, serif;
+  --police-legende: var(--font-garamond), "EB Garamond", Georgia, serif;
+
+  --texte-marque: 1.6rem;
+  --texte-marque-scene: clamp(3rem, 6vw, 5.5rem);
+  --texte-titre-1: clamp(2.4rem, 4vw, 3.4rem);
+  --texte-titre-2: 2rem;
+  --texte-titre-3: 1.45rem;
+  --texte-sous-titre: 1.2rem;
+  --texte-courant: 1.08rem;
+  --texte-petit: 0.95rem;
+  --texte-legende: 0.82rem;
+
+  --graisse-marque: 500;
+  --graisse-titre: 500;
+  --graisse-sous-titre: 400;
+  --graisse-texte: 400;
+  --graisse-forte: 600;
+
+  --interligne-titre: 1.1;
+  --interligne-texte: 1.6;
+  --approche-marque: 0.28em;
+  --approche-legende: 0.14em;
+  --casse-marque: uppercase;
+  --casse-legende: uppercase;
+
+  /* ── Espacements ───────────────────────────────────────────────── */
+  --espace-1: 0.25rem;
+  --espace-2: 0.5rem;
+  --espace-3: 0.75rem;
+  --espace-4: 1rem;
+  --espace-5: 1.5rem;
+  --espace-6: 2rem;
+  --espace-7: 3rem;
+  --espace-8: 4.5rem;
+  --espace-9: 7rem;
+
+  /* ── Tailles ───────────────────────────────────────────────────── */
+  --largeur-page: 1240px;
+  --largeur-texte: 38rem;
+  --hauteur-entete: 4.5rem;
+  --taille-bordure: 1px;
+  --taille-focus: 2px;
+  --taille-icone: 1.25rem;
+  --taille-avatar: 2rem;
+  --taille-embleme-entete: 2.1rem;
+  --taille-embleme-scene: min(70vh, 560px);
+  --portrait-largeur-min: 200px;
+  --portrait-ratio: 1 / 2;
+  --collection-vignette-hauteur: 220px;
+  --scene-hauteur: calc(100vh - var(--hauteur-entete));
+  --lookbook-bande-hauteur: 116px;
+  --lookbook-vignette-largeur: 50px;
+  --lookbook-panneau-largeur: 18rem;
+  --miroir-largeur: 300px;
+  --miroir-hauteur: 460px;
+  --rang-etiquette-largeur: 7.5rem;
+  --rang-vignette-hauteur: 104px;
+  --rang-vignette-largeur: 76px;
+  --rang-hauteur-min: 132px;
+  --presentation-vignette-hauteur: 140px;
+  --presentation-vignette-largeur: 96px;
+  --presentation-texte: 1.35rem;
+  --presentation-titre: 3rem;
+  --apercu-rang-hauteur: 18px;
+  --modal-largeur: 34rem;
+  --modal-largeur-large: 56rem;
+  --export-largeur: 1600px;
+  --lettre-largeur: 40rem;
+  --carte-collection-largeur-min: 18rem;
+  --carte-jury-largeur-min: 22rem;
+  --recherche-largeur-min: 16rem;
+  --titre-classement-largeur-min: 18rem;
+  --ornement-largeur: 20rem;
+  --opacite-desactive: 0.45;
+  --opacite-embleme-scene: 0.55;
+
+  /* ── Rayons ────────────────────────────────────────────────────── */
+  --rayon-petit: 2px;
+  --rayon-moyen: 4px;
+  --rayon-grand: 8px;
+  --rayon-pilule: 999px;
+
+  /* ── Ombres ────────────────────────────────────────────────────── */
+  --ombre-douce: 0 6px 24px rgb(0 0 0 / 0.35);
+  --ombre-portee: 0 18px 50px rgb(0 0 0 / 0.55);
+  --ombre-glisse: 0 14px 34px rgb(0 0 0 / 0.6);
+  --ombre-interne: inset 0 0 0 var(--taille-bordure) var(--couleur-bordure);
+
+  /* ── Mouvement ─────────────────────────────────────────────────── */
+  --duree-rapide: 120ms;
+  --duree-moyenne: 200ms;
+  --duree-transition: 250ms;
+  --duree-rideaux: 1300ms;
+  --delai-rideaux: 150ms;
+  --courbe-douce: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --courbe-rideaux: cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* ── Éléments décoratifs (emplacements pour le design system) ──── */
+  --deco-texture-fond: none;
+  --deco-cadre-portrait: var(--taille-bordure) solid var(--couleur-bordure);
+  --deco-cadre-portrait-survol: var(--taille-bordure) solid var(--couleur-bordure-forte);
+  --deco-ornement-separation: linear-gradient(90deg, transparent, var(--couleur-bordure-forte), transparent);
+  --deco-ornement-hauteur: 1px;
+  --deco-motif-dentelle: none;
+  --deco-rideau: linear-gradient(90deg, var(--couleur-rideau-pli), transparent 18%, var(--couleur-rideau-pli) 36%, transparent 54%, var(--couleur-rideau-pli) 72%, transparent 90%);
+  --deco-embleme: url("/embleme.png");
+}

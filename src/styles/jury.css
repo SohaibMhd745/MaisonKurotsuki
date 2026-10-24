@@ -1,0 +1,361 @@
+/* Le Jury et les tier lists. Valeurs : tokens.css. */
+
+/* ── Liste des classements ────────────────────────────────────────── */
+
+.jury__liste {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(var(--carte-jury-largeur-min), 1fr));
+  gap: var(--espace-5);
+}
+
+.carte-jury {
+  display: grid;
+  gap: var(--espace-2);
+  height: 100%;
+  padding: var(--espace-4);
+  border: var(--taille-bordure) solid var(--couleur-bordure);
+  border-radius: var(--rayon-moyen);
+  background: var(--couleur-fond-eleve);
+  text-decoration: none;
+  transition: border-color var(--duree-moyenne) var(--courbe-douce);
+}
+
+.carte-jury:hover {
+  border-color: var(--couleur-bordure-forte);
+}
+
+.apercu-tier {
+  display: grid;
+  gap: var(--taille-bordure);
+  margin-bottom: var(--espace-2);
+}
+
+.apercu-tier__rang {
+  display: grid;
+  grid-template-columns: var(--espace-6) 1fr;
+  height: var(--apercu-rang-hauteur);
+  background: var(--couleur-surface);
+}
+
+.apercu-tier__etiquette {
+  display: grid;
+  place-items: center;
+  font-size: var(--texte-legende);
+  color: var(--rang-texte);
+  overflow: hidden;
+}
+
+.apercu-tier__tenues {
+  display: flex;
+  gap: var(--taille-bordure);
+  padding-inline: var(--espace-1);
+  overflow: hidden;
+}
+
+.apercu-tier__tenues .image-tenue {
+  width: auto;
+  height: 100%;
+}
+
+/* ── Classement ───────────────────────────────────────────────────── */
+
+.tier {
+  background: var(--couleur-fond);
+}
+
+.tier__entete {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--espace-4);
+  margin-bottom: var(--espace-5);
+}
+
+.tier__titre {
+  display: grid;
+  gap: var(--espace-1);
+  flex: 1;
+  min-width: var(--titre-classement-largeur-min);
+}
+
+.tier__titre-champ {
+  width: 100%;
+  padding: 0;
+  border: none;
+  border-bottom: var(--taille-bordure) dashed transparent;
+  background: transparent;
+}
+
+.tier__titre-champ:hover,
+.tier__titre-champ:focus {
+  border-bottom-color: var(--couleur-bordure-forte);
+  outline: none;
+}
+
+.tier__outils {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--espace-2);
+}
+
+.tier__statut {
+  font-size: var(--texte-legende);
+  color: var(--couleur-texte-discret);
+  margin-right: var(--espace-2);
+}
+
+.tier__statut--erreur {
+  color: var(--couleur-alerte);
+}
+
+.tier__avis {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--espace-3);
+  margin-bottom: var(--espace-4);
+}
+
+.tier__rangs {
+  display: grid;
+  gap: var(--taille-bordure);
+  border: var(--taille-bordure) solid var(--couleur-bordure);
+  background: var(--couleur-bordure);
+}
+
+.tier__ajouter {
+  margin-top: var(--espace-3);
+}
+
+.rang {
+  display: grid;
+  grid-template-columns: var(--rang-etiquette-largeur) 1fr;
+  min-height: var(--rang-hauteur-min);
+  background: var(--couleur-fond-eleve);
+}
+
+.rang--fantome {
+  opacity: 0.4;
+}
+
+.rang--survol {
+  display: grid;
+  place-items: center;
+  min-height: auto;
+  padding: var(--espace-3) var(--espace-5);
+  border: var(--taille-bordure) solid var(--couleur-accent);
+  box-shadow: var(--ombre-glisse);
+  font-family: var(--police-titre);
+  font-size: var(--texte-titre-3);
+}
+
+.rang__etiquette {
+  position: relative;
+  display: grid;
+  place-items: center;
+  padding: var(--espace-2);
+  color: var(--rang-texte);
+  text-align: center;
+}
+
+.rang__nom {
+  font-family: var(--police-titre);
+  font-size: var(--texte-titre-3);
+  font-weight: var(--graisse-forte);
+  line-height: var(--interligne-titre);
+  overflow-wrap: anywhere;
+}
+
+button.rang__nom {
+  width: 100%;
+  min-height: 100%;
+  border: none;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+
+button.rang__nom:hover {
+  text-decoration: underline;
+  text-underline-offset: var(--espace-1);
+}
+
+.rang__poignee {
+  position: absolute;
+  top: var(--espace-1);
+  left: var(--espace-1);
+  padding: 0 var(--espace-1);
+  border: none;
+  background: transparent;
+  color: inherit;
+  opacity: 0.6;
+  cursor: grab;
+  touch-action: none;
+}
+
+.rang__poignee:hover {
+  opacity: 1;
+}
+
+.rang__tenues,
+.reserve__tenues {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: var(--espace-2);
+  min-height: var(--rang-hauteur-min);
+  padding: var(--espace-2);
+  transition: background-color var(--duree-moyenne) var(--courbe-douce);
+}
+
+.zone--survolee {
+  background: var(--couleur-surface);
+}
+
+.zone__vide {
+  align-self: center;
+  margin: auto;
+}
+
+.vignette-tier {
+  width: var(--rang-vignette-largeur);
+}
+
+.vignette-tier--fantome {
+  opacity: 0.35;
+}
+
+.vignette-tier--survol {
+  box-shadow: var(--ombre-glisse);
+  cursor: grabbing;
+}
+
+.vignette-tier__bouton {
+  display: grid;
+  gap: var(--espace-1);
+  width: 100%;
+  padding: var(--espace-1);
+  border: var(--taille-bordure) solid var(--couleur-bordure);
+  border-radius: var(--rayon-petit);
+  background: var(--couleur-surface);
+  color: var(--couleur-texte);
+  cursor: pointer;
+  touch-action: manipulation;
+  transition: border-color var(--duree-moyenne) var(--courbe-douce);
+}
+
+.vignette-tier__bouton:hover {
+  border-color: var(--couleur-accent);
+}
+
+.vignette-tier__bouton .image-tenue {
+  height: var(--rang-vignette-hauteur);
+}
+
+.vignette-tier__nom {
+  font-size: var(--texte-legende);
+  line-height: var(--interligne-titre);
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+.reserve {
+  margin-top: var(--espace-6);
+  padding-top: var(--espace-4);
+  border-top: var(--taille-bordure) solid var(--couleur-bordure);
+}
+
+.reserve__tenues {
+  border: var(--taille-bordure) dashed var(--couleur-bordure);
+  margin-top: var(--espace-2);
+}
+
+/* ── Mode présentation (partage d'écran Discord en 1080p) ─────────── */
+
+.tier--presentation {
+  max-width: none;
+  height: 100vh;
+  overflow-y: auto;
+  padding: var(--espace-5) var(--espace-6);
+  font-size: var(--presentation-texte);
+}
+
+.tier--presentation .tier__surtitre {
+  display: none;
+}
+
+.tier--presentation .titre-1 {
+  font-size: var(--presentation-titre);
+}
+
+.tier--presentation .rang__nom {
+  font-size: var(--texte-titre-2);
+}
+
+.tier--presentation .vignette-tier {
+  width: var(--presentation-vignette-largeur);
+}
+
+.tier--presentation .vignette-tier__bouton .image-tenue {
+  height: var(--presentation-vignette-hauteur);
+}
+
+.tier--presentation .vignette-tier__nom,
+.tier--presentation .legende {
+  font-size: var(--presentation-texte);
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+.tier--presentation .rang {
+  min-height: calc(var(--presentation-vignette-hauteur) + var(--espace-7));
+}
+
+/* ── Export en image ──────────────────────────────────────────────── */
+
+.export-tier {
+  position: fixed;
+  left: -100000px;
+  top: 0;
+  pointer-events: none;
+}
+
+.export-tier__page {
+  width: var(--export-largeur);
+  padding: var(--espace-7);
+  background: var(--couleur-fond);
+  color: var(--couleur-texte);
+  font-family: var(--police-texte);
+}
+
+.export-tier__entete {
+  margin-bottom: var(--espace-5);
+}
+
+.export-tier__rangs {
+  display: grid;
+  gap: var(--taille-bordure);
+  border: var(--taille-bordure) solid var(--couleur-bordure);
+  background: var(--couleur-bordure);
+}
+
+.export-tier .vignette-tier {
+  width: var(--presentation-vignette-largeur);
+}
+
+.export-tier .vignette-tier__bouton .image-tenue {
+  height: var(--presentation-vignette-hauteur);
+}
+
+.export-tier .vignette-tier__nom {
+  font-size: var(--texte-petit);
+}
+
+.export-tier__pied {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-top: var(--espace-5);
+}
